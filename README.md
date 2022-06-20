@@ -234,9 +234,21 @@ edit tuffle-config.js
         }
     }
     
-    // send ETH to address 0x0FaB6774f54AD55ed82a000ffa19b688318E1250
-    web3.eth.sendTransaction({from:accounts[0], to:"0x0FaB6774f54AD55ed82a000ffa19b688318E1250", value:100 * 1000000000000000000})
+    // start another truffer
+    truffle consle --network ganache
     
-    //
+    // send ETH to address 0x0FaB6774f54AD55ed82a000ffa19b688318E1250
+    web3.eth.sendTransaction({from:accounts[0], to:"0x0FaB6774f54AD55ed82a000ffa19b688318E1250", value:10 * 1000000000000000000})
+    
+    // start truffer with secret(mnemonic)
+    
+    truffle consle --network secret
+    
+    // make sure the balance is more than 1 ETH
     web3.eth.getBalance(accounts[0])
+
+    //make a migration
+    migrate
+    
+    nft = await ServerNft.deployed()
 ```
