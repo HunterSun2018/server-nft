@@ -98,15 +98,32 @@ contract ServerNft is
             "ServerNft: must have minter role to mint"
         );
 
+        require(
+            bytes(manufacturer).length > 0 && bytes(manufacturer).length < 16,
+            "The lenth of manufacturer is 0 or more than 16"
+        );
+        require(
+            bytes(sn).length > 0 && bytes(sn).length < 16,
+            "The lenth of SN is 0 or more than 16"
+        );
+        require(
+            bytes(manu_date).length > 0 && bytes(manu_date).length < 16,
+            "The lenth of manufacturer is 0 or more than 16"
+        );
+
         // We cannot just use balanceOf to create the new tokenId because tokens
         // can be burned (destroyed), so we need a separate counter.
         bytes32 server_id = keccak256(
             abi.encodePacked(manufacturer, sn, manu_date)
         );
-        uint256 token_id = _tokenIdTracker.current();
 
-        if (token_id != 0)
-            require(_tokens[server_id] == 0, "The server id already exists.");
+        require(_tokens[server_id] == 0, "The server id has already existed.");
+
+        //if(token_id)
+        //require(bytes(_servers[token_id].sn).length == 0, "The server id has alrady existed");
+
+        // The token id starts at 1 .
+        uint256 token_id = _tokenIdTracker.current() + 1;
 
         // Map the server id to token id
         _tokens[server_id] = token_id;
@@ -123,6 +140,26 @@ contract ServerNft is
         _tokenIdTracker.increment();
     }
 
+    function minted_amount() public view returns (uint256) {
+        return _tokenIdTracker.current();
+    }
+
+    function get_token_id(
+        string memory manufacturer,
+        string memory sn,
+        string memory manu_date
+    ) public view returns (uint256) {
+        bytes32 server_id = keccak256(
+            abi.encodePacked(manufacturer, sn, manu_date)
+        );
+
+        return _tokens[server_id];
+    }
+
+    function get_server(uint256 token_id) public view returns (Server memory) {
+        return _servers[token_id];
+    }
+    
     /**
      * @dev Pauses all token transfers.
      *

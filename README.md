@@ -178,7 +178,7 @@
     truffle(develop)> nft = await ServerNft.deployed()
 ```
 
-## 8. Interact with NFT token
+## 8. Interact with NFT
 ```
     truffle(develop)> await nft.name()
     'My NFT'
@@ -186,7 +186,5 @@
     'NFT'
     truffle(develop)> await nft.baseURI()
 
-    await nft.mint(account[1])
-
-    await nft.mint(accounts[1], "Dell", "SN1234", "2022-06-20")
+    await nft.mint(accounts[1], "Dell", "SN123456", "2022-06-20")
 ```
