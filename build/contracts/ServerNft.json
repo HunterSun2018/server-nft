@@ -31404,10 +31404,34 @@
       "links": {},
       "address": "0x60e345e609Cb47b43168330a3BFE674518A7D342",
       "transactionHash": "0xe73d03c36e29eafa9e580d099fd2c5ead4d8bdb7abba13417150ba3bd9ac3a99"
+    },
+    "1655705876178": {
+      "events": {},
+      "links": {},
+      "address": "0x7A81B5973E79C1a50B3479Af05f3DA6024211515",
+      "transactionHash": "0x0e642bf0872a12671d893ad44a963fa02826361d5ae0fe3913d3e9d86101cfad"
+    },
+    "1655710151404": {
+      "events": {},
+      "links": {},
+      "address": "0x6d14cF21a1b57F992fee8024e5f4155f2728Ed99",
+      "transactionHash": "0x50968f39a3fb6985c2ebaf8cdc34d310f7f4e400543fbccc1b7b8d2912c0c82d"
+    },
+    "1655716865937": {
+      "events": {},
+      "links": {},
+      "address": "0x3033d2116caFa34265Dde8FC111A802898acF24a",
+      "transactionHash": "0xe7418ff35e26216f25bc65d7719220c1657acf14f2a8488d5c3b49c9b16f3778"
+    },
+    "1655717156322": {
+      "events": {},
+      "links": {},
+      "address": "0x3033d2116caFa34265Dde8FC111A802898acF24a",
+      "transactionHash": "0xe7418ff35e26216f25bc65d7719220c1657acf14f2a8488d5c3b49c9b16f3778"
     }
   },
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-06-20T03:11:01.949Z",
+  "updatedAt": "2022-06-20T09:26:48.971Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "{ERC721} token, including:  - ability for holders to burn (destroy) their tokens  - a minter role that allows for token minting (creation)  - a pauser role that allows to stop all token transfers  - token ID and URI autogeneration This contract uses {AccessControl} to lock permissioned functions using the different roles - head to its documentation for details. The account that deploys the contract will be granted the minter and pauser roles, as well as the default admin role, which will let it grant both minter and pauser roles to other accounts. _Deprecated in favor of https://wizard.openzeppelin.com/[Contracts Wizard]._",

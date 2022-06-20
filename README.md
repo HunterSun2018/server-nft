@@ -175,7 +175,7 @@
 
 ## 7. We can then use our deployed contract.
 ```
-    truffle(develop)> nft = await ServerNft.deployed()
+   nft = await ServerNft.deployed()
 ```
 
 ## 8. Interact with NFT
@@ -187,4 +187,56 @@
     truffle(develop)> await nft.baseURI()
 
     await nft.mint(accounts[1], "Dell", "SN123456", "2022-06-20")
+```
+
+## 9. Deploy to Ganache
+1.  vim truffle-config.js
+```
+    network : {
+        ganache: {
+            host: "127.0.0.1", 
+            port: 8545,
+            network_id: "*",
+        }
+    }    
+```
+
+2.  start Ganache cli
+  ```
+    npm install -g ganache-cli
+    ganache-cli
+  ```
+3.  connect Truffle to Ganache
+```
+    truffle consle --network ganache
+    migrate
+    nft = await ServerNft.deployed()
+```
+
+## 10 Deply with HDWallet
+```
+    npx mnemonics > .secret
+    npm install --save-dev @truffle/hdwallet-provider
+
+```
+edit tuffle-config.js
+```
+    const HDWalletProvider = require('@truffle/hdwallet-provider');
+    const fs = require('fs');
+    const mnemonic = fs.readFileSync(".secret").toString().trim();
+
+    network : {
+        secret: {
+            provider: () => new HDWalletProvider(mnemonic, "http://127.0.0.1:8545", 0, 10),
+            host: "127.0.0.1",      // 
+            port: 8545,
+            network_id: "*",        // 
+        }
+    }
+    
+    // send ETH to address 0x0FaB6774f54AD55ed82a000ffa19b688318E1250
+    web3.eth.sendTransaction({from:accounts[0], to:"0x0FaB6774f54AD55ed82a000ffa19b688318E1250", value:100 * 1000000000000000000})
+    
+    //
+    web3.eth.getBalance(accounts[0])
 ```
